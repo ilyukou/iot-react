@@ -1,0 +1,27 @@
+{
+    "host" : "api-url",
+
+    "project" : {
+        "prefix" : "/project",
+
+        "methods" : {
+            "getAll" :"/all"
+        }
+    },
+
+    "sensor" : {
+        "prefix" : "/sensor",
+
+        "methods" : {
+        }
+    },
+
+    "value" : {
+        "prefix" : "/value",
+
+        "methods" : {
+            "getByPeriod" : "/period",
+            "getAll" : "/all"
+        }
+    }
+}
