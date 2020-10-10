@@ -1,19 +1,31 @@
 import React, { Component } from 'react';
 
-import ProjectList from '../dashboard/ProjectList';
+import Projects from '../dashboard/Projects';
+import ProjectForm from '../dashboard/ProjectForm';
 
 class Dashboard extends Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = { 
+            projects : this.props.value
+        }
     }
-    render() { 
-        return ( 
-            <div>
-                <h2>Dashboard</h2>
-                <ProjectList/>
-            </div> 
-        );
+    render() {
+        if(this.state.projects.length == 0 ){
+            return ( 
+                <div>
+                    <ProjectForm/>
+                    Projects not found
+                </div> 
+            );
+        } else {
+            return ( 
+                <div>
+                    <ProjectForm/>
+                    <Projects value={this.state.projects}/>
+                </div> 
+            );
+        }
     }
 }
  

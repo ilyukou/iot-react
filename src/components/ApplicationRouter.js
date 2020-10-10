@@ -1,27 +1,23 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-import Header from './header/Header';
-import Footer from './footer/Footer';
 import Content from './content/Content';
 
-import {BrowserRouter as Router} from "react-router-dom";
+import 'antd/dist/antd.css';
+import { BrowserRouter } from 'react-router-dom';
 
-function ApplicationRouter() {
+class ApplicationRouter extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { collapsed: false }
+    }
 
-    const value = [
-        {
-            "url" : "/dashboard",
-            "label" : "Dashboard"
-        }
-    ]
-
-    return (
-        <Router>
-            <Header value={value}/>
-            <Content/>
-            <Footer/>
-        </Router>
-    );          
+    render() { 
+        return (
+            <BrowserRouter>
+                <Content/>
+            </BrowserRouter>
+        );  
+    }
 }
  
 export default ApplicationRouter;

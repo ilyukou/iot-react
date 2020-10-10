@@ -1,5 +1,5 @@
 {
-    "host" : "api-url",
+    "host" : "http://localhost:8080",
 
     "project" : {
         "prefix" : "/project",

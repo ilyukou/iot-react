@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
-class Footer extends Component {
+class SensorForm extends Component {
     constructor(props) {
         super(props);
         this.state = {  }
     }
     render() { 
-        return ( <h4>Footer</h4> );
+        return ( <div>SensorForm</div> );
     }
 }
  
-export default Footer;
+export default SensorForm;
