@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 
-
-import { Statistic, Row, Col} from 'antd';
-
 class SensorTitle extends Component {
     constructor(props) {
         super(props);
@@ -14,9 +11,7 @@ class SensorTitle extends Component {
     render() { 
         return (
             <div>
-                <p>
-                    <strong>{this.state.data.name}</strong> - <i>{this.state.data.value.value}</i>
-                </p>
+                <strong>{this.state.data.name}</strong> - <strong>{this.state.data.value.value}</strong>
             </div>
         );
     }

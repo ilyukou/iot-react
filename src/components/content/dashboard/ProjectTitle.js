@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import './Project.css';
+import './ProjectTitle.css';
 import {Link, useParams} from 'react-router-dom';
 import {sensorApiUrl} from '../../Properties';
 import 'antd/dist/antd.css';
 import { Card, Statistic} from 'antd';
-import SensorList from './SensorList';
 import SensorTitle from './SensorTitle';
 
 export default class Project extends Component {
@@ -36,12 +35,13 @@ export default class Project extends Component {
                         "token" : sensorData.data.token,
                         "value" : res
                     }
-    
+                    console.log("sensor");
                     console.log(sensor);
                     this.state.sensors.push(sensor);
                     this.setState({isLoading : false});
                 });
             }).catch(error => {
+                console.log("error");
                 console.log(error);
             });
     }
@@ -90,11 +90,10 @@ export default class Project extends Component {
             <Card
                 size="small"
                 title={this.state.data.name}
-                extra={<Link to={"/dashboard/" + this.state.data.id}>More</Link>}
+                extra={<Link to={"/dashboard?projectId=" + this.state.data.id}>More</Link>}
                 style={{ width: 300 }}>
                 {sensorsStatistic}
             </Card>
         );
     }
 }
- 

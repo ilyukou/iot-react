@@ -35,10 +35,8 @@ class Content extends Component {
       await axios.get("http://localhost:8080/project/all")
       .then(res => {
 
-        if(res.data.length > 0){
-          this.setState({projects : res.data});
-          this.setState({isLoading : false});
-        }
+        this.setState({projects : res.data});
+        this.setState({isLoading : false});
           
       }).catch(error => {
         console.log(error);
