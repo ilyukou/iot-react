@@ -40,11 +40,12 @@ class Delete extends Component {
       };
 
     async deleteEntity(){
-        await axios.delete("http://localhost:8080/project/" + this.state.id)
+        await axios.delete("http://localhost:8080/" + this.state.entity + "/" + this.state.id)
             .then(res => {
-                message.success('Project deleted');
+                if(this.state)
+                message.success(this.state.entity + ' deleted');
             }).catch(error => {
-                message.error("Project didn't delete");
+                message.error(this.state.entity + " didn't delete");
             });
         this.handleOk();
     }

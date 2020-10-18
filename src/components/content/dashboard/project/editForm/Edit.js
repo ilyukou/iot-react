@@ -41,9 +41,9 @@ class Edit extends Component {
 
     async editEntity(){
         let editEntity = {
-            "name" : document.getElementById("editInput").value
+            "name" : document.getElementById("editInput" + this.state.entity + this.state.id).value
         }
-        await axios.put("http://localhost:8080/project/" + this.state.id, editEntity)
+        await axios.put("http://localhost:8080/" + this.state.entity + "/" + this.state.id, editEntity)
             .then(res => {
                 message.success('Name changed');
             }).catch(error => {
@@ -63,7 +63,7 @@ class Edit extends Component {
                     onOk={this.editEntity}
                     onCancel={this.handleCancel}
                     >
-                    <Input placeholder="New name" id="editInput"/>
+                    <Input placeholder="New name" id={"editInput" + this.state.entity + this.state.id}/>
                     </Modal>
             </div>
         );

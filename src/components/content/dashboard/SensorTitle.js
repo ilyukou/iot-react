@@ -8,10 +8,18 @@ class SensorTitle extends Component {
         }
     }
 
-    render() { 
+    render() {
+        let name = this.state.data.name;
+
+        let value = "not found";
+
+        if(this.state.data.value.value != undefined){
+            value = this.state.data.value.value;
+        }
+
         return (
             <div>
-                <strong>{this.state.data.name}</strong> - <strong>{this.state.data.value.value}</strong>
+                <strong>{name}</strong> - <i>{value}</i>
             </div>
         );
     }

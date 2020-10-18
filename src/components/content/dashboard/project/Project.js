@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ProjectEditForm from './ProjectEditForm';
-import Sensor from './Sensor';
-import SensorForm from './SensorForm';
+import Sensor from './sensor/Sensor';
 import ProjectNavigation from './ProjectNavigation';
 import {Row, Col} from 'antd';
 import SensorFrom from './SensorForm';
@@ -38,10 +37,10 @@ class Project extends Component {
     }
     
     render() {
-        let sensors = <p>Sensor not found</p>
+        let sensors = <p>Sensors not found</p>
         
-        if(this.state.project.sensors > 0){
-            sensors = this.state.project.sensors.map(sensor => <Sensor value={sensor}/>);
+        if(this.state.project.sensors != undefined && this.state.project.sensors.length > 0){
+            sensors = this.state.project.sensors.map(sensor => <Sensor id={sensor}/>)
         }
 
 

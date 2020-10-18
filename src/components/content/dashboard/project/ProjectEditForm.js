@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import {Row, Col} from 'antd';
 
-import Edit from './EditElement/Edit';
-import Delete from './EditElement/Delete';
+import Edit from './editForm/Edit';
+import Delete from './editForm/Delete';
 
 class ProjectEditForm extends Component {
     constructor(props) {
