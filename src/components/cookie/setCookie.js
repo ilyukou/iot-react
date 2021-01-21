@@ -1,5 +1,4 @@
 import Cookies from 'universal-cookie';
-import {FRONTEND_URL} from "../../../properties";
 const cookies = new Cookies();
 
 export default function setCookie(name,value) {
@@ -9,6 +8,6 @@ export default function setCookie(name,value) {
 
     cookies.set(name, value, 
             { path: '/' },
-            {domain : FRONTEND_URL},
+            {domain : "localhost:8080"},
             { expires: new Date().getTime() + 1000*10});
 }

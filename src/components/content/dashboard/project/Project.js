@@ -5,6 +5,7 @@ import Sensor from './sensor/Sensor';
 import ProjectNavigation from './ProjectNavigation';
 import {Row, Col} from 'antd';
 import SensorFrom from './SensorForm';
+import getCookie from '../../../cookie/getCookie';
 
 class Project extends Component {
     constructor(props) {
@@ -20,9 +21,14 @@ class Project extends Component {
     }
 
     async getProjects(){
-      
-        await axios.get("http://localhost:8080/project/" + this.state.id)
-        .then(res => {
+        await axios({
+            method: 'get', //you can set what request you want to be
+            url: 'http://localhost:8080/project/' + this.state.id,
+            data: {},
+            headers: {
+              "Authorization": getCookie("Authorization")
+            }
+          }).then(res => {
   
           this.setState({project : res.data});
           this.setState({isLoading : false});

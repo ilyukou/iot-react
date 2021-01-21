@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import getCookie from '../../../cookie/getCookie';
 import axios from 'axios';
 
 import {
@@ -44,8 +44,14 @@ class SensorForm extends Component {
             "project" : this.state.projectId
         }
 
-        await axios.post("http://localhost:8080/sensor", editEntity)
-            .then(res => {
+        await axios({
+          method: 'post', //you can set what request you want to be
+          url: "http://localhost:8080/sensor",
+          data: editEntity,
+          headers: {
+            "Authorization": getCookie("Authorization")
+          }
+        }).then(res => {
                 message.success('Sensor created');
             }).catch(error => {
                 message.error("Sensor didng't create");

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import getCookie from '../../cookie/getCookie';
+
 import './ProjectTitle.css';
 import {Link, useParams} from 'react-router-dom';
 import {sensorApiUrl} from '../../Properties';
@@ -12,18 +14,45 @@ export default class Project extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            data : this.props.value,
+            projectId : this.props.id,
+            data : {},
             sensors : [],
             isLoading : true
         }
 
         this.getSensorInfo = this.getSensorInfo.bind(this);
+        this.getProjectInfo = this.getProjectInfo.bind(this);
         this.getValue = this.getValue.bind(this);
     }
 
+    async getProjectInfo(){
+        await axios({
+            method: 'get', //you can set what request you want to be
+            url: 'http://localhost:8080/project/' + this.state.projectId,
+            data: {},
+            headers: {
+              "Authorization": getCookie("Authorization")
+            }
+          }).then(res => {
+            console.log(res.data);
+            this.setState({data : res.data});
+            this.state.data.sensors.forEach(id => this.getSensorInfo(id));
+            this.setState({isLoading : false});
+          }).catch(e => {
+              // ignore
+          })
+    }
+
+
     async getSensorInfo(id){
-        await axios.get(sensorApiUrl + "/" + id)
-            .then(sensorData => {
+        await axios({
+            method: 'get', //you can set what request you want to be
+            url: sensorApiUrl + "/" + id,
+            data: {},
+            headers: {
+              "Authorization": getCookie("Authorization")
+            }
+          }).then(sensorData => {
                 
                 let value = this.getValue(sensorData.data.token);
 
@@ -63,7 +92,7 @@ export default class Project extends Component {
     }
 
     componentDidMount(){
-        this.state.data.sensors.forEach(id => this.getSensorInfo(id));
+        this.getProjectInfo();
     }
 
     render() {
@@ -74,6 +103,12 @@ export default class Project extends Component {
 
         let sensorsStatistic;
         
+        if(this.state.isLoading){
+            return (
+                <div>Loading ...</div>
+            );
+        }
+
         if(this.state.sensors.length > 0){ // this.state.sensors == 1
             sensorsStatistic = this.state.sensors.map(sensor => 
                 <Card.Grid style={gridStyle}>

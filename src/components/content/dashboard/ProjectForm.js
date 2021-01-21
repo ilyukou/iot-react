@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './ProjectForm.css';
 import { Collapse, Form, Input, Button, Checkbox } from 'antd';
-
+import getCookie from '../../cookie/getCookie';
 class ProjectForm extends Component {
     constructor(props) {
         super(props);
@@ -19,7 +19,7 @@ class ProjectForm extends Component {
     async createProject(value){
         console.log("Create project");
 
-        await axios.post("http://localhost:8080/project", value).then(res => {
+        await axios.post("http://localhost:8080/project", value, {headers: {'Authorization': getCookie("Authorization")}}).then(res => {
             console.log(res.data);
         }).catch(res => {
             console.log(res.data);
@@ -61,6 +61,19 @@ class ProjectForm extends Component {
                         {
                             required: true,
                             message: 'Please input project name',
+                        },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Project title"
+                        name="title"
+                        rules={[
+                        {
+                            required: true,
+                            message: 'Please input project title',
                         },
                         ]}
                     >

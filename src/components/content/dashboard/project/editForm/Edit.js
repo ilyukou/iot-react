@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import getCookie from '../../../../cookie/getCookie';
 import axios from 'axios';
 
 import {
@@ -43,8 +43,14 @@ class Edit extends Component {
         let editEntity = {
             "name" : document.getElementById("editInput" + this.state.entity + this.state.id).value
         }
-        await axios.put("http://localhost:8080/" + this.state.entity + "/" + this.state.id, editEntity)
-            .then(res => {
+        await axios({
+          method: 'put', //you can set what request you want to be
+          url: "http://localhost:8080/" + this.state.entity + "/" + this.state.id,
+          data: editEntity,
+          headers: {
+            "Authorization": getCookie("Authorization")
+          }
+        }).then(res => {
                 message.success('Name changed');
             }).catch(error => {
                 message.error("Name didng't change");

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import getCookie from '../../../../cookie/getCookie';
 import axios from 'axios';
 
 import {
@@ -40,8 +40,14 @@ class Delete extends Component {
       };
 
     async deleteEntity(){
-        await axios.delete("http://localhost:8080/" + this.state.entity + "/" + this.state.id)
-            .then(res => {
+      await axios({
+        method: 'delete', //you can set what request you want to be
+        url: "http://localhost:8080/" + this.state.entity + "/" + this.state.id,
+        data: {},
+        headers: {
+          "Authorization": getCookie("Authorization")
+        }
+      }).then(res => {
                 if(this.state)
                 message.success(this.state.entity + ' deleted');
             }).catch(error => {

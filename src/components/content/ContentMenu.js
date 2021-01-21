@@ -8,6 +8,7 @@ import { Menu } from 'antd';
 import {
   BarChartOutlined,
   FolderOpenOutlined,
+  TeamOutlined
 } from '@ant-design/icons';
 
 class ContentMenu extends Component {
@@ -31,6 +32,10 @@ class ContentMenu extends Component {
 
                 <Menu.Item key="2" icon={<BarChartOutlined />}>
                     <Link to={"/dashboard"}>Dashboard</Link>
+                </Menu.Item>
+
+                <Menu.Item key="1" icon={<TeamOutlined />}>
+                    <Link to={"/login"}>Login</Link>
                 </Menu.Item>
             </Menu>
         );

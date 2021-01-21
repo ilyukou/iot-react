@@ -7,16 +7,40 @@ import {Col, Row} from 'antd';
 import {useLocation} from 'react-router-dom';
 
 import Project from '../dashboard/project/Project';
+import getCookie from '../../cookie/getCookie';
+import axios from 'axios';
 
 class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            projects : this.props.value,
+            projects : [],
             countColInRow : 1
         }
 
-        this.getGridOfProject = this.getGridOfProject.bind(this); 
+        this.getGridOfProject = this.getGridOfProject.bind(this);
+        this.getProjects = this.getProjects.bind(this);
+    }
+
+    async getProjects(){
+        await axios({
+            method: 'get', //you can set what request you want to be
+            url: 'http://localhost:8080/project/all',
+            data: {},
+            headers: {
+              "Authorization": getCookie("Authorization")
+            }
+          }).then(res => {
+            console.log(res.data);
+            this.setState({projects : res.data});
+          }).catch(e => {
+              console.log("Dashboard")
+              console.log(e);
+          })
+    }
+
+    componentDidMount(){
+        this.getProjects();
     }
 
     getGridOfProject(projects, sizeRow){
@@ -39,7 +63,7 @@ class Dashboard extends Component {
                     <Row gutter={[16, 16]}>
                         {row.map(project => 
                             <Col span={24/sizeRow}>
-                                <ProjectTitle value={project}/>
+                                <ProjectTitle id={project}/>
                             </Col>)
                         }
                     </Row>)
