@@ -6,6 +6,7 @@ import ProjectNavigation from './ProjectNavigation';
 import {Row, Col} from 'antd';
 import SensorFrom from './SensorForm';
 import getCookie from '../../../cookie/getCookie';
+import {api} from '../../../Properties';
 
 class Project extends Component {
     constructor(props) {
@@ -23,7 +24,7 @@ class Project extends Component {
     async getProjects(){
         await axios({
             method: 'get', //you can set what request you want to be
-            url: 'http://localhost:8080/project/' + this.state.id,
+            url: api + '/project/' + this.state.id,
             data: {},
             headers: {
               "Authorization": getCookie("Authorization")

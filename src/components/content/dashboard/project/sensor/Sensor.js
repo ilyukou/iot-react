@@ -7,6 +7,7 @@ import ChartValue from './chart/ChartValue';
 import SensorEditForm from './SensorEditForm';
 import getCookie from '../../../../cookie/getCookie';
 import SensorState from './SensorState';
+import {api} from '../../../../Properties';
 
 class Sensor extends Component {
     constructor(props) {
@@ -25,7 +26,7 @@ class Sensor extends Component {
     async getSensor(){
         await axios({
             method: 'get', //you can set what request you want to be
-            url: "http://localhost:8080/sensor/" + this.state.id,
+            url: api + "/sensor/" + this.state.id,
             data: {},
             headers: {
               "Authorization": getCookie("Authorization")

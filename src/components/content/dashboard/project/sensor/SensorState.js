@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Menu, Dropdown, message } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import axios from 'axios';
+import {api} from '../../../../Properties';
 
 class SensorState extends Component {
     constructor(props) {
@@ -21,7 +22,7 @@ class SensorState extends Component {
     async setCurrentState(state){
         await axios({
             method: 'put', //you can set what request you want to be
-            url: "http://localhost:8080/sensorState/" + this.state.sensor.token + "?state=" + state,
+            url: api + "/sensorState/" + this.state.sensor.token + "?state=" + state,
             data: {}
           }) .then(res => {
 

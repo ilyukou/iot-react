@@ -8,6 +8,8 @@ import {
 
 import {message, Modal, Input} from 'antd';
 
+import {api} from '../../../../Properties';
+
 class Delete extends Component {
     constructor(props) {
         super(props);
@@ -42,7 +44,7 @@ class Delete extends Component {
     async deleteEntity(){
       await axios({
         method: 'delete', //you can set what request you want to be
-        url: "http://localhost:8080/" + this.state.entity + "/" + this.state.id,
+        url: api + "/" + this.state.entity + "/" + this.state.id,
         data: {},
         headers: {
           "Authorization": getCookie("Authorization")

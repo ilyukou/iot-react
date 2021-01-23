@@ -7,6 +7,7 @@ import setCookie from '../../cookie/setCookie';
 import removeCookie from '../../cookie/removeCookie';
 
 import {Redirect} from 'react-router-dom';
+import {api} from '../../Properties';
 
 class SignIn extends Component {
     constructor(props) {
@@ -19,7 +20,7 @@ class SignIn extends Component {
     }
 
     async signIn(values){
-        await axios.post("http://localhost:8080/auth/signIn", values)
+        await axios.post(api + "/auth/signIn", values)
         .then(res =>{
             console.log(res.data.token);
             this.setState({redirect : true});

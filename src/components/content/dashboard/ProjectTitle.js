@@ -9,6 +9,7 @@ import {sensorApiUrl} from '../../Properties';
 import 'antd/dist/antd.css';
 import { Card, Statistic} from 'antd';
 import SensorTitle from './SensorTitle';
+import {api} from '../../Properties';
 
 export default class Project extends Component {
     constructor(props) {
@@ -28,7 +29,7 @@ export default class Project extends Component {
     async getProjectInfo(){
         await axios({
             method: 'get', //you can set what request you want to be
-            url: 'http://localhost:8080/project/' + this.state.projectId,
+            url: api +'/project/' + this.state.projectId,
             data: {},
             headers: {
               "Authorization": getCookie("Authorization")
@@ -77,7 +78,7 @@ export default class Project extends Component {
 
     async getValue(token){
         let result = {};
-        await axios.get("http://localhost:8080/value/" + token)
+        await axios.get(api + "/value/" + token)
             .then(res => {
                 console.log("getValue:success");
                 console.log(res.data);

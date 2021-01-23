@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {Form, Input, Button} from 'antd';
 import axios from 'axios';
 import {Redirect} from 'react-router-dom';
+import {api} from '../../Properties';
 
 class SignUp extends Component {
     constructor(props) {
@@ -15,7 +16,7 @@ class SignUp extends Component {
     }
 
     async signUp(values){
-        await axios.post("http://localhost:8080/auth/signUp", values)
+        await axios.post(api + "/auth/signUp", values)
         .then(res =>{
             console.log(res.data.token);
             this.setState({redirect : true});

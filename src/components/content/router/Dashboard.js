@@ -9,6 +9,7 @@ import {useLocation} from 'react-router-dom';
 import Project from '../dashboard/project/Project';
 import getCookie from '../../cookie/getCookie';
 import axios from 'axios';
+import {api} from '../../Properties';
 
 class Dashboard extends Component {
     constructor(props) {
@@ -25,7 +26,7 @@ class Dashboard extends Component {
     async getProjects(){
         await axios({
             method: 'get', //you can set what request you want to be
-            url: 'http://localhost:8080/project/all',
+            url: api + '/project/all',
             data: {},
             headers: {
               "Authorization": getCookie("Authorization")

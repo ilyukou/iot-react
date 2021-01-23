@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ReactChart from './ReactChart';
 import Loading from '../../Loading';
+import {api} from '../../../../../Properties';
 
 class ChartValue extends Component {
     constructor(props) {
@@ -17,7 +18,7 @@ class ChartValue extends Component {
     }
 
     async getValues(){
-        await axios.get("http://localhost:8080/value/all/" + this.state.token)
+        await axios.get(api + "/value/all/" + this.state.token)
         .then(res => {
   
           this.setState({values : res.data});

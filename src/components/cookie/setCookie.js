@@ -1,4 +1,7 @@
 import Cookies from 'universal-cookie';
+
+import {api} from '../Properties';
+
 const cookies = new Cookies();
 
 export default function setCookie(name,value) {
@@ -8,6 +11,6 @@ export default function setCookie(name,value) {
 
     cookies.set(name, value, 
             { path: '/' },
-            {domain : "localhost:8080"},
+            {domain : api},
             { expires: new Date().getTime() + 1000*10});
 }

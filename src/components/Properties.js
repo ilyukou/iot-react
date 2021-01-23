@@ -1,5 +1,6 @@
 import {host,project,value,sensor} from '../res/properties.json';
 
+export const api = host;
 
 export const projectApiUrl = host + project.prefix;
 export const getAllProjectApiUrl = projectApiUrl + project.methods.getAll;

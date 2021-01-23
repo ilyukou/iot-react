@@ -3,6 +3,8 @@ import axios from 'axios';
 import './ProjectForm.css';
 import { Collapse, Form, Input, Button, Checkbox } from 'antd';
 import getCookie from '../../cookie/getCookie';
+import {api} from '../../Properties';
+
 class ProjectForm extends Component {
     constructor(props) {
         super(props);
@@ -19,7 +21,7 @@ class ProjectForm extends Component {
     async createProject(value){
         console.log("Create project");
 
-        await axios.post("http://localhost:8080/project", value, {headers: {'Authorization': getCookie("Authorization")}}).then(res => {
+        await axios.post(api + "/project", value, {headers: {'Authorization': getCookie("Authorization")}}).then(res => {
             console.log(res.data);
         }).catch(res => {
             console.log(res.data);

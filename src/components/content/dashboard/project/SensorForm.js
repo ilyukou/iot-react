@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import getCookie from '../../../cookie/getCookie';
 import axios from 'axios';
 
+import {api} from '../../../Properties';
+
 import {
     PlusOutlined
   } from '@ant-design/icons';
@@ -46,7 +48,7 @@ class SensorForm extends Component {
 
         await axios({
           method: 'post', //you can set what request you want to be
-          url: "http://localhost:8080/sensor",
+          url: api + "/sensor",
           data: editEntity,
           headers: {
             "Authorization": getCookie("Authorization")

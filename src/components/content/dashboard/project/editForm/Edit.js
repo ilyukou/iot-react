@@ -8,6 +8,8 @@ import {
 
 import {message, Modal, Input} from 'antd';
 
+import {api} from '../../../../Properties';
+
 class Edit extends Component {
     constructor(props) {
         super(props);
@@ -45,7 +47,7 @@ class Edit extends Component {
         }
         await axios({
           method: 'put', //you can set what request you want to be
-          url: "http://localhost:8080/" + this.state.entity + "/" + this.state.id,
+          url: api + "/" + this.state.entity + "/" + this.state.id,
           data: editEntity,
           headers: {
             "Authorization": getCookie("Authorization")
